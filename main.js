@@ -26,7 +26,7 @@ fetch(url)
         .then(data=>{
             console.log(data);
             document.querySelector("#chName").innerText = data.name;
-            document.querySelector("#chBio").innerText = `${data.name} has ${data.hair_color} hair and ${data.eye_color} colored eyed.`
+            document.querySelector("#chBio").innerText = `${data.name} has ${data.hair_color.toLowerCase()} hair and ${data.eye_color.toLowerCase()} colored eyes.`
         })
            
 })  
