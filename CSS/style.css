@@ -91,7 +91,7 @@ p{
 
 @media screen and (max-width: 1000px){
 
-    h1{
+    h1, h2, p{
         display: flex;
         word-wrap: normal;
         text-align: center;
