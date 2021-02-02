@@ -90,10 +90,11 @@ p{
 /*******************************************/
 
 @media screen and (max-width: 1000px){
-     .main{
+
+    h1{
         display: flex;
-        justify-content: center;
-        align-items: center;
+        word-wrap: normal;
+        text-align: center;
     }
     .character-choice {
         flex-direction: column;
