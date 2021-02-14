@@ -21,6 +21,7 @@
 body {
     background-color: rgb(79, 172, 248);
     background: linear-gradient(rgb(79, 172, 248), rgb(24, 50, 73)); 
+    height: 100%;
 }
 
 
@@ -64,21 +65,21 @@ p{
     align-items: center;
     flex-direction: column;
 }
-.main{
-    height: 100%;
-}
+
 .character-choice{
     display: flex;
+    padding: 0 8%;
     flex-direction: row;
     justify-content: center;
-    width: 100%;    
+    flex-wrap: wrap;
+    align-items: center;
 }
 
-.character-choice > section > div{
+.character-choice  > div{
     margin: 10px;
 }
 
-.character-choice > section > div > img{
+.character-choice  > div > img{
     height: 140px;
     width: 140px;
     border-radius: 50%;
@@ -96,9 +97,4 @@ p{
         word-wrap: normal;
         text-align: center;
     }
-    .character-choice {
-        flex-direction: column;
-       align-items: center;
-}
-
 }
