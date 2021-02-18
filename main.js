@@ -5,30 +5,43 @@ document.querySelectorAll('.char').forEach(item => {
             getInfo(event.target.alt);
     })
 })
-
-function getInfo(n){
-const name = n
+let characterArray=[];
 let url = 'https://ghibliapi.herokuapp.com/people/'
-
-fetch(url)
-    .then(res => res.json())
-    .then(data => {
-        for(let i =0;i<data.length;i++){
-                if (name === data[i].name) {
-                    //Once the character entered matches a charcter in the array, save the ID of the URL
-                       url = url + data[i].id
-                }            
-    }   
-    fetch(url) 
+function getCharacters(){
+    fetch(url)
         .then(res=>res.json())
         .then(data=>{
-            console.log(data);
-            document.querySelector("#chName").innerText = data.name;
-            document.querySelector("#chBio").innerText = `${data.name} has ${data.hair_color.toLowerCase()} hair and ${data.eye_color.toLowerCase()} colored eyes.`
+            characterArray=data
         })
-           
-})    
-    .catch(err=>{
-        console.log(`error ${err}`);
-    })
 }
+function getInfo(n){
+    const name = n
+    for(let i =0;i<characterArray.length;i++){
+            if (name === characterArray[i].name) {
+                //Once the character entered matches a charcter in the array, save the ID of the URL
+            const character = characterArray[i];
+            document.querySelector("#chName").innerText = character.name;
+            if(character.hair_color.includes("Bald")){
+                let baldArray = character.hair_color.split(" ");
+                baldArray.splice(2, 0, "his")        
+                baldArray = baldArray.join(" ");
+                document.querySelector("#chBio").innerText = `${character.name} is ${baldArray.toLowerCase()} and has ${character.eye_color.toLowerCase()} colored eyes.`;
+            }else if 
+            (character.hair_color.includes("None"))
+                {
+                    document.querySelector("#chBio").innerText = `${character.name} is bald and has ${character.eye_color.toLowerCase()} colored eyes.`;
+            } else {
+            document.querySelector("#chBio").innerText = `${character.name} has ${character.hair_color.toLowerCase()} hair and ${character.eye_color.toLowerCase()} colored eyes.`;
+            }
+        fetch(character.films[0]) 
+        .then(res=>res.json())
+        .then(data=>{
+             document.querySelector("#chBio").innerText += ` This character appears in the movie "${data.title}".`
+        })
+        .catch(err=>{
+            console.log(`error ${err}`);
+            })
+        }            
+}   
+}
+getCharacters()
